@@ -42,7 +42,8 @@ def parse_accident_description(line):
     line = line.decode('utf8').replace(u'\u00a0', ' ').replace(u'\u2013', '-')
     match = re.match(ACCIDENT_DESCRIPTION_RE, line, re.U)
     if match:
-        location, text, date, time = match.groups()
+        location, text, mm, dd, yy, time = match.groups()
+        date = '20{}-{}-{}'.format(yy, mm, dd)
         vehicles = '1'
         injuries = tows = '0'
         # Vehicles.
@@ -57,7 +58,7 @@ def parse_accident_description(line):
         return date, time, vehicles, injuries, tows, location, text
     raise Exception('Bad parse: ' + line.encode('utf8'))
 
-ACCIDENT_DESCRIPTION_RE = r'(.*?)\s+-\s+(.*?)\s+(\d\d/\d\d/\d\d)\s+(\d{4})'
+ACCIDENT_DESCRIPTION_RE = r'(.*?)\s+-\s+(.*?)\s+(\d\d)/(\d\d)/(\d\d)\s+(\d{4})'
 
 if __name__ == '__main__':
     main()

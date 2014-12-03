@@ -3,10 +3,10 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
-deer_incidents <- read.csv("data/mt-lebanon-deer-incidents-2014-10.csv", as.is=c(1,6))
-deer_incidents <- transform(deer_incidents, Incident.Date = mdy(Incident.Date))
-deer_incidents <- transform(deer_incidents, date = Incident.Date,
-                            Incident.Date = NULL)
+deer_incidents <- read.csv("data/mt-lebanon-deer-incidents-2014-10.csv",
+                           as.is=c(1,6))
+deer_incidents <- transform(deer_incidents, date = mdy(Incident.Date))
+deer_incidents <- transform(deer_incidents, Incident.Date = NULL)
 
 qplot(date, data = deer_incidents, geom = "density")
 

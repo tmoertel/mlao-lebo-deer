@@ -16,7 +16,7 @@ deer_accidents <- subset(deer_incidents, Vehicle.Involved == "X")
 deer_accidents <- transform(deer_accidents, vehicles=1, Vehicle.Involved=NULL)
 
 car_accidents <- read.csv("data/police-blotter/accidents.csv")
-car_accidents <- transform(car_accidents, date = ymd(date))
+car_accidents <- transform(car_accidents, date = ymd(date), time = hm(time))
 
 deer_accidents_in_car_accidents_date_range <-
   subset(deer_accidents, (date >= min(car_accidents$date) &

@@ -1,6 +1,4 @@
 date,time,vehicles,injuries,tows,location,text
-2014-12-30,18:13,2,0,1,Washington Road,"2 vehicles, no injuries, 1 tow."
-2014-12-25,18:17,1,0,0,Castle Shannon Blvd.,Pedestrian struck while crossing road.
 2014-11-17,07:35,2,0,2,Sleepy Hollow Road,"2 vehicles, no injuries, 2 tows."
 2014-11-16,19:01,2,0,2,Bower Hill Road,"2 vehicles, no injuries, 2 tows."
 2014-11-16,07:55,1,0,1,Newburn Drive,"1 vehicle, no injuries, 1 tow."
@@ -199,9 +197,11 @@ date,time,vehicles,injuries,tows,location,text
 2014-01-06,11:48,2,0,2,Altoona Place,"2 vehicles, no injuries, 2 tows."
 2014-01-05,10:30,1,0,0,Jefferson Drive,"Hit & Run, vehicle struck while parked on street."
 2014-01-04,14:23,3,0,1,Washington Road,"3 vehicles, no injuries, 1 tow."
+2013-12-30,18:13,2,0,1,Washington Road,"2 vehicles, no injuries, 1 tow."
 2013-12-30,15:24,1,0,0,Connor Road,"Hit & Run, truck struck while parked in parking lot."
 2013-12-28,16:21,1,0,0,Central Square,"Hit & Run, vehicle struck while parked on street."
 2013-12-26,14:20,3,0,1,Washington Road,"3 vehicles, no injuries, 1 tow."
+2013-12-25,18:17,1,0,0,Castle Shannon Blvd.,Pedestrian struck while crossing road.
 2013-12-23,19:23,1,0,0,Shady Drive West,"Hit & Run, vehicle struck while parked on street."
 2013-12-22,18:45,2,0,1,Catalpa Place,"2 vehicles, no injuries, 1 tow."
 2013-12-21,20:45,1,0,1,Castle Shannon Blvd.,"1 vehicle, no injuries, 1 tow."

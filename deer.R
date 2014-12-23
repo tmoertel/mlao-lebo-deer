@@ -18,6 +18,24 @@ deer_accidents <- transform(deer_accidents, vehicles=1, Vehicle.Involved=NULL)
 car_accidents <- read.csv("data/police-blotter/accidents.csv")
 car_accidents <- transform(car_accidents, date = ymd(date), time = hm(time))
 
+## The car-accident data come from the accidents section of police
+## blotters. The blotters are published weekly, but we can't take for
+## granted that the blotters will each cover exactly 7 days worth of
+## reporting, or that there won't be missing blotters. Therefore, to
+## determine the years worth of data coverage we have, we add up the
+## dates covered by the individual police blotters in our data set.
+pbdates <- read.csv("data/police-blotter/police_blotter_date_ranges.csv")
+pbdates <- mutate(pbdates,
+                  from = mdy(from),
+                  to = mdy(to),
+                  years = (to - from) / dyears(1) + 1/365)  # Inclusive.
+if (length(unique(pbdates$years)) > 1) {
+  ## Right now, all of the blotters cover 7 days. If that ever changes,
+  ## we ought to verify that there wasn't a data-entry error.
+  stop("Check dates on police blotters for inconsistencies.")
+}
+police_blotter_data_coverage_in_years <- sum(pbdates$years)
+
 deer_accidents_in_car_accidents_date_range <-
   subset(deer_accidents, (date >= min(car_accidents$date) &
                           date <= max(car_accidents$date)))
@@ -49,12 +67,14 @@ summarize(car_accidents, vehicles = sum(vehicles))
 
 ### In terms of injury risk, how do deer incidents compare to car accidents?
 
+## First, deer-related incidents.
 (deer_injury_incidents <- sum(deer_incidents$Person.Injured == "X"))
 (deer_incident_years <- diff(range(deer_incidents$date)) / dyears(1))
 (deer_injury_incidents_per_year <- deer_injury_incidents / deer_incident_years)
 
+## Next, car-related incidents.
 (car_injury_incidents <- sum(car_accidents$injuries > 0))
-(car_incident_years <- diff(range(car_accidents$date)) / dyears(1))
+(car_incident_years <- police_blotter_data_coverage_in_years)
 (car_injury_incidents_per_year <- car_injury_incidents / car_incident_years)
 
 (relative_risk_of_injury_car_to_deer <-

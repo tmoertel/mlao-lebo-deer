@@ -8,12 +8,16 @@ deer_incidents <- read.csv("data/mt-lebanon-deer-incidents.csv",
 deer_incidents <- transform(deer_incidents, date = mdy(Incident.Date))
 deer_incidents <- transform(deer_incidents, Incident.Date = NULL)
 
-qplot(date, data = deer_incidents, geom = "density")
+qplot(date, data = deer_incidents, geom = "density",
+      main = "All deer incidents (including trivial)")
 
 ### For context, compare deer-related car accidents with all car accidents.
 
 deer_accidents <- subset(deer_incidents, Vehicle.Involved == "X")
 deer_accidents <- transform(deer_accidents, vehicles=1, Vehicle.Involved=NULL)
+
+qplot(date, data = deer_accidents, geom = "density",
+      main = "Deer incidents involving automobiles")
 
 car_accidents <- read.csv("data/police-blotter/accidents.csv")
 car_accidents <- transform(car_accidents, date = ymd(date), time = hm(time))
@@ -57,7 +61,8 @@ combined_accidents <-
   transform(combined_accidents, month = floor_date(date, "month"))
 
 qplot(as.factor(month), data = combined_accidents,
-      weight = vehicles, fill = kind)
+      weight = vehicles, fill = kind,
+      main = "Car accidents in Mt. Lebanon")
 
 combined_accidents_by_month <-
   ddply(combined_accidents, .(month, kind), summarize, vehicles = sum(vehicles))

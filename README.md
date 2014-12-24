@@ -2,7 +2,7 @@ mlao-lebo-deer
 ==============
 
 This repository holds data and analyses relating to deer in Mt. Lebanon, Pennsylvania.
-It contains almost 4 years' data on deer incidents and about 70 weeks' data on car accidents.
+It contains almost 4 years' data on deer incidents and about 75 weeks' data on car accidents.
 I have made reasonable efforts to clean the data and convert it into easy-to-use CSV files.
 
 Questions or comments?

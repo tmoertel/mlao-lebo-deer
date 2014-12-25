@@ -39,7 +39,7 @@ According to municipal records, when it comes to people actually getting hurt, d
 [1] 1.544429
 ```
 
-By comparison, over the same period of time, cars account for about 100 reported incidents of people getting hurt, according to police accident reports.
+By comparison, cars account for about 100 reported incidents of people getting hurt per year, according to police accident reports.
 
 ```R
 > ## Next, car-related incidents in general.

@@ -84,3 +84,13 @@ summarize(car_accidents, vehicles = sum(vehicles))
 
 (relative_risk_of_injury_car_to_deer <-
  car_injury_incidents_per_year / deer_injury_incidents_per_year)
+
+
+### If there's a car accident in Mt. Lebanon, how much more (or less) likely
+### is it to injure someone, given that a deer was involved?
+frequency <- function(bools) sum(bools) / length(bools)
+(freq_of_injury_in_all_car_accidents <- frequency(car_accidents$injuries > 0))
+(freq_of_injury_in_deer_car_accidents <- frequency(deer_accidents$Person.Injured == "X"))
+(rel_freq_of_injury_in_accidents_if_deer_involved <-
+     (freq_of_injury_in_deer_car_accidents /
+          freq_of_injury_in_all_car_accidents))

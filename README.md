@@ -60,3 +60,28 @@ Put simply, for every incident in which people get hurt by deer, cars cause over
 ```
 
 Therefore, if we are to believe that deer in Mt. Lebanon are a “major public safety issue,” we must also believe that cars – a risk that most people understand and are comfortable with – represents over 65 “major public safety issues” combined.
+
+If you're in an accident, are you more likely to be hurt if it involves a deer?
+-------------------------------------------------------------------------------
+
+No, quite the opposite is true.
+According to Mt. Lebanon's accident and deer-incident records, if an accident involves a deer, it is about 9 times *less* likely than usual to injure someone.
+While 35% of all car accidents in Mt. Lebanon result in injury, only 3.8% of accidents involving deer do.
+
+This does make sense when you think about it.
+If you're in a car accident, it's usually because your car collided with something else.
+If that something else *isn't* a deer, it's usually something harder and heavier – a car, a tree, or some roadside object made of steel or concrete.
+
+```R
+> ### If there's a car accident in Mt. Lebanon, how much more (or less) likely
+> ### is it to injure someone, given that a deer was involved?
+> frequency <- function(bools) sum(bools) / length(bools)
+> (freq_of_injury_in_all_car_accidents <- frequency(car_accidents$injuries > 0))
+[1] 0.35
+> (freq_of_injury_in_deer_car_accidents <- frequency(deer_accidents$Person.Injured == "X"))
+[1] 0.03821656
+> (rel_freq_of_injury_in_accidents_if_deer_involved <-
++      (freq_of_injury_in_deer_car_accidents /
++           freq_of_injury_in_all_car_accidents))
+[1] 0.1091902
+```

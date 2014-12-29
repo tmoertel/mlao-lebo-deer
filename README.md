@@ -54,7 +54,7 @@ While 35% of all car accidents in Mt. Lebanon result in injury, only 3.8% of acc
 
 This does make sense when you think about it.
 If you're in a car accident, it's usually because your car collided with something else.
-If that something else *isn't* a deer, it's usually something harder and heavier – a car, a tree, or some roadside object made of steel or concrete.
+If that something else *wasn't* a deer, it was probably something much harder and much heavier – a car, a tree, or some roadside object made of steel or concrete.
 
 ```R
 > ### If there's a car accident in Mt. Lebanon, how much more (or less) likely

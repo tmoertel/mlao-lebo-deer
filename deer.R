@@ -60,9 +60,11 @@ combined_accidents <-
 combined_accidents <-
   transform(combined_accidents, month = floor_date(date, "month"))
 
-qplot(as.factor(month), data = combined_accidents,
+qplot(as.factor(substr(month, 1, 7)), data = combined_accidents,
       weight = vehicles, fill = kind,
-      main = "Car accidents in Mt. Lebanon")
+      main = "Car accidents in Mt. Lebanon",
+      xlab = "Month", ylab = "Count") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
 combined_accidents_by_month <-
   ddply(combined_accidents, .(month, kind), summarize, vehicles = sum(vehicles))

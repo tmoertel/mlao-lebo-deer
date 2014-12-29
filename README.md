@@ -45,6 +45,12 @@ Put simply, for every incident in which people get hurt by deer, cars cause over
 
 Therefore, if we are to believe that deer in Mt. Lebanon are a “major public safety issue,” we must also believe that cars – a risk that most people understand and are comfortable with – represents over 65 “major public safety issues” combined.
 
+Another way to understand how small the purported “deer danger” actually is is to express it this way:
+*In Mt. Lebanon, deer are involved in less than 2% of accidents in which people get hurt.*
+In graphical form, the relationship looks like this:
+
+![In Mt. Lebanon, deer account for less than 2% of accidents that hurt people](img/deer_danger_actual_scale.png)
+
 If you're in an accident, are you more likely to be hurt if it involves a deer?
 -------------------------------------------------------------------------------
 

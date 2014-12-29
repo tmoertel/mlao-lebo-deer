@@ -49,7 +49,7 @@ If you're in an accident, are you more likely to be hurt if it involves a deer?
 -------------------------------------------------------------------------------
 
 No, quite the opposite is true.
-According to Mt. Lebanon's accident and deer-incident records, if an accident involves a deer, it is about 9 times *less* likely than usual to injure someone.
+According to Mt. Lebanon's accident and deer-incident records, if an accident involves a deer, the accident is much *less* likely than usual to injure someone: the risk is only 1/9th as great.
 While 35% of all car accidents in Mt. Lebanon result in injury, only 3.8% of accidents involving deer do.
 
 This does make sense when you think about it.

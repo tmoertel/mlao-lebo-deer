@@ -71,6 +71,14 @@ combined_accidents_by_month <-
 
 summarize(car_accidents, vehicles = sum(vehicles))
 
+### In which months are deer-related car accidents most common?
+
+qplot(as.factor(substr(date, 6, 7)), data = deer_accidents,
+      weight = vehicles,
+      main = "Deer-related car accidents in Mt. Lebanon",
+      xlab = "Month", ylab = "Count") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+
 
 ### In terms of injury risk, how do deer incidents compare to car accidents?
 

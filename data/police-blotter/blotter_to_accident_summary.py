@@ -28,7 +28,7 @@ def get_accident_descriptions(lines):
     for line in lines:
         if not in_accident_section:
             # The accident section starts with a header.
-            if re.match('ACCIDENT', line):
+            if re.match('ACCIDENT|CRASHES', line):
                 in_accident_section = True
         else:
             # The accident section ends with an empty line.

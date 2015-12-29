@@ -106,6 +106,24 @@ frequency <- function(bools) sum(bools) / length(bools)
 (rel_freq_of_injury_in_accidents_if_deer_involved <-
      (freq_of_injury_in_deer_car_accidents /
           freq_of_injury_in_all_car_accidents))
+
+### Compute some yearly and monthly summary statistics.
+group_by(deer_accidents, year(date)) %>%
+  summarise(accidents = n())
+
+group_by(deer_accidents, floor_date(date, "month")) %>%
+  summarise(accidents = n()) %>%
+  View
+
+group_by(deer_accidents, year = year(date)) %>%
+  summarise(accidents = n())
+
+group_by(deer_accidents,
+         year = year(date),
+         last = month(date) > 8) %>%
+  summarise(accidents = n())
+
+
 ### Pedestrian/bicyclist accidents.
 
 pedcyc_incidents <-
@@ -143,3 +161,20 @@ full_join(deer_accidents_by_year, pedcyc_accidents_by_year, by="year") %>%
   summarize(deer_crash_injuries = sum(injury_accidents.x),
             pedcyc_crash_injuries = sum(injury_accidents.y))
 
+
+deer_accidents_monthly <- transform(deer_accidents, year=year(date), month=month(date))
+
+deer_accidents_monthly %>%
+  count(year, month) %>%
+  spread(month, n)
+
+deer_accidents_monthly %>%
+  count(year)
+
+deer_accidents_monthly %>%
+  filter(month > 8) %>%
+  count(year)
+
+transform(deer_incidents, year=year(date), month=month(date)) %>%
+  count(year, month) %>%
+  spread(month, n)

@@ -68,9 +68,6 @@ qplot(as.factor(substr(month, 1, 7)), data = combined_accidents,
       xlab = "Month", ylab = "Count") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-combined_accidents_by_month <-
-  ddply(combined_accidents, .(month, kind), summarize, vehicles = sum(vehicles))
-
 summarize(car_accidents, vehicles = sum(vehicles))
 
 ### In which months are deer-related car accidents most common?

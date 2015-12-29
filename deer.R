@@ -1,7 +1,9 @@
-library(lubridate)
 library(ggplot2)
-library(plyr)
+library(lubridate)
 library(scales)
+library(dplyr)  # Load last to shadow earlier-defined functions.
+library(tidyr)
+library(ggthemes)
 
 deer_incidents <- read.csv("data/mt-lebanon-deer-incidents.csv",
                            as.is=c(1,6))
@@ -104,3 +106,40 @@ frequency <- function(bools) sum(bools) / length(bools)
 (rel_freq_of_injury_in_accidents_if_deer_involved <-
      (freq_of_injury_in_deer_car_accidents /
           freq_of_injury_in_all_car_accidents))
+### Pedestrian/bicyclist accidents.
+
+pedcyc_incidents <-
+  read.csv("data/pedestrian-and-bicyclist-accidents.csv",
+           colClasses=c(
+             "factor", rep("character", 3), rep("numeric", 3),
+             rep("character", 7), "numeric"))
+pedcyc_incidents <- transform(pedcyc_incidents, when=ymd_hm(paste(DATE, TIME)))
+## select(subset(pedcyc_incidents, UCR.DESCRIPTION == "DEATH"), REPORT)
+pedcyc_incidents <-
+  pedcyc_incidents %>%
+  subset(UCR.DESCRIPTION != "DEATH")
+
+summary(pedcyc_incidents)
+
+pedcyc_incidents %>%
+  group_by(UCR.DESCRIPTION) %>%
+  summarize(n = n(), injury_frequency = frequency(INJ > 0))
+
+deer_accidents_by_year <-
+  group_by(deer_accidents, year=year(date)) %>%
+  summarise(accidents = n(), injury_accidents = sum(Person.Injured == "X"))
+
+pedcyc_accidents_by_year <-
+  pedcyc_incidents %>%
+  group_by(year=year(when)) %>%
+  summarise(accidents = n(), injury_accidents = sum(INJ > 0))
+
+full_join(deer_accidents_by_year, pedcyc_accidents_by_year, by="year") %>%
+  arrange(year)
+
+full_join(deer_accidents_by_year, pedcyc_accidents_by_year, by="year") %>%
+  arrange(year) %>%
+  subset(year >= 2011 & year <= 2014) %>%
+  summarize(deer_crash_injuries = sum(injury_accidents.x),
+            pedcyc_crash_injuries = sum(injury_accidents.y))
+

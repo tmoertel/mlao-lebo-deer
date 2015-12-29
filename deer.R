@@ -178,3 +178,49 @@ deer_accidents_monthly %>%
 transform(deer_incidents, year=year(date), month=month(date)) %>%
   count(year, month) %>%
   spread(month, n)
+
+
+### Deer management report.
+
+deer_management_report <-
+  data.frame(Year=2000:2013,
+             Animal_control=c(34,40,39,59,49,61,62,64,48,50,79,71,99,90),
+             Police=c(rep(NA,11), 45,49,43))
+
+(deer_management_report_m <- deer_management_report %>% gather(Kind, Reports, 2:3))
+
+p <-
+qplot(Year, Reports, data=deer_management_report_m,
+      geom=c("line"), color=Kind,
+      main="Reports of probable deer accidents in Mt. Lebanon (2000–2013)") +
+  geom_vline(xintercept=2006.25, color="gray") +
+  geom_vline(xintercept=2007.25, color="gray") +
+  annotate("text", x=2006.5, y=65, label="Cull 69 deer", hjust=0, angle=90, size=4) +
+  annotate("text", x=2007.5, y=65, label="Cull 146 deer", hjust=0, angle=90, size=4) +
+  scale_color_discrete(name="Source",
+                       breaks=c("Animal_control", "Police"),
+                       labels=c("Animal control", "Police"))
+p
+
+p + scale_y_continuous(trans=log10_trans())
+
+dev.new()
+
+p + coord_fixed(ratio = with(deer_management_report, bank_slopes(Year, Animal_control)))
+
+ggsave(file="/tmp/probable_deer_accidents_mt_lebanon_2000_thru_2013.pdf",
+       device=cairo_pdf)
+
+summary(m1 <- lm(I(log(Animal_control)) ~ Year, data=deer_management_report))
+
+summary(m_lo <- lm(I(log(Animal_control)) ~ Year,
+                   data=subset(deer_management_report, Year <= 2005)))
+
+summary(m_lo_linear <- lm(Animal_control ~ Year,
+                          data=subset(deer_management_report, Year <= 2005)))
+
+summary(m_hi <- lm(I(log(Animal_control)) ~ Year,
+                   data=subset(deer_management_report, Year >= 2010)))
+
+summary(m_cull <- lm(I(log(Animal_control)) ~ Year,
+                   data=subset(deer_management_report, Year > 2008)))

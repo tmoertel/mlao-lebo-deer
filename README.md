@@ -8,6 +8,8 @@ I have made reasonable efforts to clean the data and convert it into easy-to-use
 How dangerous are deer?
 -----------------------
 
+*Note: The analysis below was last updated December 2014.*
+
 In Mt. Lebanon, deer have been portrayed as a “major public safety issue.”
 How dangerous are deer really?
 

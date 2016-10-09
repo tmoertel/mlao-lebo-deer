@@ -2,7 +2,7 @@ pdfs := $(wildcard *.pdf)
 txts := $(pdfs:.pdf=.txt)
 
 accidents.csv : $(txts) ./blotter_to_accident_summary.py
-	./blotter_to_accident_summary.py $(txts) >> $@.tmp
+	./blotter_to_accident_summary.py $(txts) > $@.tmp
 	< $@.tmp tr -d \\015 | sort -r > $@
 	rm -f $@.tmp
 	echo "from,to" > police_blotter_date_ranges.csv
